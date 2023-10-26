@@ -80,11 +80,29 @@ def crop(img, center, scale, res, rot=0):
     new_img = np.zeros(new_shape)
 
     # Range to fill new array
+    ###dont know if this modification will cause new bug
+    ###just for now!
     new_x = max(0, -ul[0]), min(br[0], len(img[0])) - ul[0]
+    if (new_x[1] < 0):
+      anew_x = new_x[0] - new_x[1], 0
+    else:
+      anew_x = new_x
     new_y = max(0, -ul[1]), min(br[1], len(img)) - ul[1]
+    if (new_y[1] < 0):
+      anew_y = new_y[0] - new_y[1], 0
+    else:
+      anew_y = new_y
     # Range to sample from original image
     old_x = max(0, ul[0]), min(len(img[0]), br[0])
+    if (old_x[1] < 0):
+      aold_x = old_x[0] - old_x[1], 0
+    else:
+      aold_x = old_x
     old_y = max(0, ul[1]), min(len(img), br[1])
+    if (old_y[1] < 0):
+      aold_y = old_y[0] - old_y[1], 0
+    else:
+      aold_y = old_y
 
     new_img[new_y[0]:new_y[1], new_x[0]:new_x[1]] = img[old_y[0]:old_y[1], 
                                                         old_x[0]:old_x[1]]
