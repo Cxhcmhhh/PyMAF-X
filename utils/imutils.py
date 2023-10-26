@@ -104,8 +104,8 @@ def crop(img, center, scale, res, rot=0):
     else:
       aold_y = old_y
 
-    new_img[new_y[0]:new_y[1], new_x[0]:new_x[1]] = img[old_y[0]:old_y[1], 
-                                                        old_x[0]:old_x[1]]
+    new_img[anew_y[0]:anew_y[1], anew_x[0]:anew_x[1]] = img[aold_y[0]:aold_y[1], 
+                                                        aold_x[0]:aold_x[1]]
 
     if not rot == 0:
         # Remove padding
